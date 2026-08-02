@@ -1,27 +1,27 @@
-import logging
 import os
+import sys
 
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
 
-load_dotenv()
-
-logger = logging.getLogger(__name__)
+print("[connection.py] Initializing database connection...")
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if not DATABASE_URL:
-    logger.error(
-        "DATABASE_URL environment variable is not set. "
+    print(
+        "[connection.py] ERROR: DATABASE_URL environment variable is not set. "
         "Set it in the Railway service variables to connect to PostgreSQL."
     )
-    raise RuntimeError("DATABASE_URL environment variable is not set")
+    sys.exit(1)
+
+print("[connection.py] DATABASE_URL found, creating engine...")
 
 Base = declarative_base()
 
 try:
     engine = create_engine(DATABASE_URL)
-except Exception:
-    logger.exception("Failed to create database engine with the provided DATABASE_URL")
-    raise
+    print("[connection.py] Database engine created successfully.")
+except Exception as exc:
+    print(f"[connection.py] ERROR: Failed to create database engine: {exc}")
+    sys.exit(1)
