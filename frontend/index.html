@@ -8,75 +8,138 @@
   </head>
   <body>
     <div class="app-shell">
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">MVP</p>
-          <h1>Market Intelligence</h1>
-        </div>
-        <button class="primary-btn">Nova pesquisa</button>
-      </header>
-
-      <main class="dashboard">
-        <section class="hero-card">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MI</div>
           <div>
-            <p class="label">Status geral</p>
-            <h2>Dashboard operando</h2>
-            <p class="description">
-              Visualize indicadores, pesquisas recentes e status dos clientes em uma interface funcional.
-            </p>
+            <p class="eyebrow">MVP</p>
+            <h1>Market Intelligence</h1>
           </div>
-          <div class="hero-metric">
-            <span class="metric-value" id="activeCompanies">128</span>
-            <span class="metric-label">empresas ativas</span>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+          <button class="nav-btn" data-view="companies">Empresas</button>
+          <button class="nav-btn" data-view="surveys">Pesquisas</button>
+          <button class="nav-btn" data-view="rewards">Recompensas</button>
+          <button class="nav-btn" data-view="analytics">Analytics</button>
+        </nav>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="label">Painel principal</p>
+            <h2 id="viewTitle">Dashboard</h2>
+          </div>
+          <button class="primary-btn" id="newSurveyButton">Nova pesquisa</button>
+        </header>
+
+        <section class="view active" id="dashboardView">
+          <div class="hero-card">
+            <div>
+              <p class="label">Status geral</p>
+              <h3>Dashboard operando</h3>
+              <p class="description">Acompanhe indicadores, respostas e o estado geral das campanhas.</p>
+            </div>
+            <div class="hero-metric">
+              <span class="metric-value" id="activeCompanies">128</span>
+              <span class="metric-label">empresas ativas</span>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <span class="stat-title">Respostas</span>
+              <strong id="responsesCount">4.8k</strong>
+            </article>
+            <article class="stat-card">
+              <span class="stat-title">NPS</span>
+              <strong id="npsValue">+42</strong>
+            </article>
+            <article class="stat-card">
+              <span class="stat-title">Concordância</span>
+              <strong id="agreementValue">87%</strong>
+            </article>
+          </div>
+
+          <section class="table-card">
+            <div class="table-header">
+              <h3>Pesquisas recentes</h3>
+              <span>Atualizado agora</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Setor</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="surveyTableBody">
+                <tr>
+                  <td>Retail Pulse</td>
+                  <td>Varejo</td>
+                  <td><span class="pill ok">Ativa</span></td>
+                </tr>
+                <tr>
+                  <td>Fintech Score</td>
+                  <td>Financeiro</td>
+                  <td><span class="pill process">Coletando</span></td>
+                </tr>
+                <tr>
+                  <td>Health Monitor</td>
+                  <td>Saúde</td>
+                  <td><span class="pill warn">Pendente</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </section>
+
+        <section class="view" id="companiesView">
+          <div class="form-card">
+            <h3>Cadastrar empresa</h3>
+            <form id="companyForm" class="stack-form">
+              <input type="text" name="nome" placeholder="Nome da empresa" required />
+              <input type="email" name="email" placeholder="E-mail" required />
+              <button type="submit" class="primary-btn">Salvar</button>
+            </form>
+            <p id="companyMessage" class="message"></p>
           </div>
         </section>
 
-        <section class="stats-grid">
-          <article class="stat-card">
-            <span class="stat-title">Respostas</span>
-            <strong id="responsesCount">4.8k</strong>
-          </article>
-          <article class="stat-card">
-            <span class="stat-title">NPS</span>
-            <strong id="npsValue">+42</strong>
-          </article>
-          <article class="stat-card">
-            <span class="stat-title">Concordância</span>
-            <strong id="agreementValue">87%</strong>
-          </article>
+        <section class="view" id="surveysView">
+          <div class="form-card">
+            <h3>Criar pesquisa</h3>
+            <form id="surveyForm" class="stack-form">
+              <input type="text" name="titulo" placeholder="Título da pesquisa" required />
+              <textarea name="descricao" placeholder="Descrição"></textarea>
+              <button type="submit" class="primary-btn">Criar</button>
+            </form>
+            <p id="surveyMessage" class="message"></p>
+          </div>
         </section>
 
-        <section class="table-card">
-          <div class="table-header">
-            <h3>Pesquisas recentes</h3>
-            <span>Atualizado agora</span>
+        <section class="view" id="rewardsView">
+          <div class="form-card">
+            <h3>Recompensas</h3>
+            <button id="rewardButton" class="primary-btn">Conceder 20 pontos</button>
+            <p id="rewardMessage" class="message"></p>
           </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Setor</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Retail Pulse</td>
-                <td>Varejo</td>
-                <td><span class="pill ok">Ativa</span></td>
-              </tr>
-              <tr>
-                <td>Fintech Score</td>
-                <td>Financeiro</td>
-                <td><span class="pill process">Coletando</span></td>
-              </tr>
-              <tr>
-                <td>Health Monitor</td>
-                <td>Saúde</td>
-                <td><span class="pill warn">Pendente</span></td>
-              </tr>
-            </tbody>
-          </table>
+        </section>
+
+        <section class="view" id="analyticsView">
+          <div class="analytics-grid">
+            <article class="stat-card">
+              <span class="stat-title">Segmentos</span>
+              <strong id="segmentList">Tech, Financeiro, Varejo</strong>
+            </article>
+            <article class="stat-card">
+              <span class="stat-title">Trend</span>
+              <strong id="trendValue">IA para atendimento</strong>
+            </article>
+          </div>
         </section>
       </main>
     </div>
