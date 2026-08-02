@@ -82,7 +82,11 @@
     </div>
 
     <script>
-      window.__MARKET_INTELLIGENCE_API__ = window.__MARKET_INTELLIGENCE_API__ || 'http://127.0.0.1:8000';
+      window.__MARKET_INTELLIGENCE_API__ = window.__MARKET_INTELLIGENCE_API__ || (
+        window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+          ? 'http://127.0.0.1:8000'
+          : 'https://backend-production-801d.up.railway.app'
+      );
     </script>
     <script src="app.js"></script>
   </body>
