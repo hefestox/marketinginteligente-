@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market Intelligence</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">MVP</p>
+          <h1>Market Intelligence</h1>
+        </div>
+        <button class="primary-btn">Nova pesquisa</button>
+      </header>
+
+      <main class="dashboard">
+        <section class="hero-card">
+          <div>
+            <p class="label">Status geral</p>
+            <h2>Dashboard operando</h2>
+            <p class="description">
+              Visualize indicadores, pesquisas recentes e status dos clientes em uma interface funcional.
+            </p>
+          </div>
+          <div class="hero-metric">
+            <span class="metric-value" id="activeCompanies">128</span>
+            <span class="metric-label">empresas ativas</span>
+          </div>
+        </section>
+
+        <section class="stats-grid">
+          <article class="stat-card">
+            <span class="stat-title">Respostas</span>
+            <strong id="responsesCount">4.8k</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-title">NPS</span>
+            <strong id="npsValue">+42</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-title">Concordância</span>
+            <strong id="agreementValue">87%</strong>
+          </article>
+        </section>
+
+        <section class="table-card">
+          <div class="table-header">
+            <h3>Pesquisas recentes</h3>
+            <span>Atualizado agora</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Setor</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Retail Pulse</td>
+                <td>Varejo</td>
+                <td><span class="pill ok">Ativa</span></td>
+              </tr>
+              <tr>
+                <td>Fintech Score</td>
+                <td>Financeiro</td>
+                <td><span class="pill process">Coletando</span></td>
+              </tr>
+              <tr>
+                <td>Health Monitor</td>
+                <td>Saúde</td>
+                <td><span class="pill warn">Pendente</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

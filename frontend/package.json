@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "echo 'frontend starter'"
+    "start": "python -m http.server 3000",
+    "dev": "python -m http.server 3000"
   }
 }
