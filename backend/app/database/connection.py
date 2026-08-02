@@ -9,18 +9,19 @@ print("[connection.py] Initializing database connection...")
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if not DATABASE_URL:
+    DATABASE_URL = "sqlite:///./market_intelligence.db"
     print(
-        "[connection.py] ERROR: DATABASE_URL environment variable is not set. "
-        "Set it in the Railway service variables to connect to PostgreSQL."
+        "[connection.py] DATABASE_URL environment variable is not set. "
+        "Using local SQLite fallback for development."
     )
-    sys.exit(1)
 
 print("[connection.py] DATABASE_URL found, creating engine...")
 
 Base = declarative_base()
 
 try:
-    engine = create_engine(DATABASE_URL)
+    connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+    engine = create_engine(DATABASE_URL, connect_args=connect_args)
     print("[connection.py] Database engine created successfully.")
 except Exception as exc:
     print(f"[connection.py] ERROR: Failed to create database engine: {exc}")
