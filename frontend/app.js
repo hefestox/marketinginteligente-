@@ -1,3 +1,5 @@
+const API_BASE_URL = window.__MARKET_INTELLIGENCE_API__ || 'http://127.0.0.1:8000';
+
 const metrics = {
   activeCompanies: 128,
   responsesCount: '4.8k',
@@ -7,7 +9,7 @@ const metrics = {
 
 async function loadDashboard() {
   try {
-    const response = await fetch('http://127.0.0.1:8000/analytics/dashboard');
+    const response = await fetch(`${API_BASE_URL}/analytics/dashboard`);
     if (!response.ok) {
       throw new Error('Backend indisponível');
     }
