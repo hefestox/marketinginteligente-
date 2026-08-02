@@ -1,11 +1,23 @@
+import logging
+
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.database.connection import Base, engine
 from app.database.models import Answer, Campaign, Company, Reward, Survey, User
 
+logger = logging.getLogger(__name__)
+
 
 def create_all_tables() -> None:
-    Base.metadata.create_all(bind=engine)
+    try:
+        Base.metadata.create_all(bind=engine)
+    except SQLAlchemyError:
+        logger.exception(
+            "Failed to create database tables. Check that DATABASE_URL is set "
+            "correctly and the database is reachable."
+        )
+        raise
 
 
 def add_user(session: Session, payload: dict) -> User:

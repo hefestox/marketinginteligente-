@@ -1,10 +1,11 @@
+import os
 from datetime import datetime, timedelta
 from hashlib import pbkdf2_hmac
 from typing import Any
 
 import jwt
 
-SECRET_KEY = "market-intelligence-secret-key"
+SECRET_KEY = os.getenv("JWT_SECRET", "market-intelligence-secret-key")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
 
